@@ -1,1 +1,11 @@
+# Node.js modules
+node_modules/
+
+# Next.js build output
+.next/
+
+# Environment variables
 .env
+
+# Uploads and user files
+uploads/

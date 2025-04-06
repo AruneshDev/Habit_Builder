@@ -1,4 +1,4 @@
-import connectToDatabase from '../../backend/db';
+import connectToDatabase from '../../../backend/db';
 import multer from 'multer';
 import nextConnect from 'next-connect';
 import fs from 'fs';
