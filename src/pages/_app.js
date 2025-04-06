@@ -11,20 +11,18 @@ function Auth({ children }) {
         return <p>Loading...</p>;
     }
 
-    // If the user is not authenticated and not on the login page, redirect to login
-    if (!session && router.pathname !== '/login') {
-        if (typeof window !== 'undefined') {
+    // Avoid redirect loop: Check if the current path is already '/login'
+    if (!session) {
+        if (router.pathname !== '/login') {
             router.push('/login');
+            return null;
         }
-        return null;
-    }
-
-    // If authenticated and on the login page, redirect to the home page
-    if (session && router.pathname === '/login') {
-        if (typeof window !== 'undefined') {
-            router.replace('/');
+    } else {
+        // If authenticated and already on the login page, redirect to home
+        if (router.pathname === '/login') {
+            router.push('/');
+            return null;
         }
-        return null;
     }
 
     return children;
