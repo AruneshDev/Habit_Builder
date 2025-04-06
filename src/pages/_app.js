@@ -11,15 +11,15 @@ function Auth({ children }) {
         return <p>Loading...</p>;
     }
 
-    // If the user is not authenticated and is not on the login page, redirect
+    // If the user is not authenticated and not on the login page, redirect to login
     if (!session && router.pathname !== '/login') {
         if (typeof window !== 'undefined') {
-            router.replace('/login'); // Use replace to avoid infinite loop
+            router.push('/login');
         }
         return null;
     }
 
-    // If the user is authenticated and is on the login page, redirect to the home page
+    // If authenticated and on the login page, redirect to the home page
     if (session && router.pathname === '/login') {
         if (typeof window !== 'undefined') {
             router.replace('/');

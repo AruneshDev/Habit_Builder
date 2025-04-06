@@ -6,7 +6,7 @@ function Login() {
         <div 
             className="h-screen w-screen flex items-center justify-center"
             style={{
-                backgroundImage: `url('/assets/Believe.png')`,
+                backgroundImage: `url(/assets/Believe.png)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
