@@ -7,7 +7,7 @@ import axios from 'axios';
 import openai from '../utils/openai';
 
 function HabitBuilder() {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const [habits, setHabits] = useState([]);
     const [newHabit, setNewHabit] = useState('');
     const [profilePic, setProfilePic] = useState(null);
@@ -17,14 +17,17 @@ function HabitBuilder() {
     const router = useRouter();
 
     useEffect(() => {
-        if (session) {
+        if (status === 'loading') return;  // Wait for session to load
+        if (!session) {
+            router.push('/login');  // Redirect to login if not authenticated
+        } else {
             axios.get(`/api/habits?user=${session.user.email}`).then((res) => {
                 setHabits(res.data.habits);
                 setStreak(res.data.streak);
                 setLastCheckIn(res.data.lastCheckIn);
             });
         }
-    }, [session]);
+    }, [session, status]);
 
     const updateStreak = () => {
         const today = new Date().toLocaleDateString();
@@ -70,6 +73,8 @@ function HabitBuilder() {
         await axios.post('/api/upload', formData);
         setProfilePic(URL.createObjectURL(file));
     };
+
+    if (status === 'loading') return <div>Loading...</div>;
 
     return (
         <div className="p-4">

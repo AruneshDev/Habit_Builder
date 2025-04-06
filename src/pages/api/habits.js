@@ -1,4 +1,5 @@
-import connectToDatabase from '../../backend/db';
+import connectToDatabase from '../../backend/db.js';
+
 
 export default async function handler(req, res) {
     const { method } = req;

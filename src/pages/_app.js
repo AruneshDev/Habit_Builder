@@ -29,16 +29,6 @@ function Auth({ children }) {
 }
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-    const router = useRouter();
-
-    // Redirect to login if not authenticated and not already on login page
-    if (!session && router.pathname !== '/login') {
-        if (typeof window !== "undefined") {
-            router.push('/login');
-        }
-        return null;
-    }
-
     return (
         <SessionProvider session={session}>
             <Component {...pageProps} />

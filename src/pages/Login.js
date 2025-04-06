@@ -15,12 +15,12 @@ function Login() {
             }}
         >
             <div className="absolute inset-0 flex items-center justify-center z-10">
-                <button 
-                    onClick={() => signIn('google')} 
-                    className="bg-blue-500 text-white text-2xl font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition shadow-lg"
-                >
-                    Sign Up to Start
-                </button>
+            <button onClick={() => signIn('google', { callbackUrl: '/' })} 
+            className="bg-blue-500 text-white text-2xl font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition shadow-lg"
+            >
+                Login to Start
+            </button>
+
             </div>
             <div className="absolute inset-0 bg-black opacity-30"></div>  {/* Optional overlay */}
         </div>
